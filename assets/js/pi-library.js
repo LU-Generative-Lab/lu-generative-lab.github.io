@@ -55,9 +55,12 @@
     var subject = "Raspberry Pi checkout: " + field("name").value;
     // The address is split in the HTML to slow down scrapers.
     var to = form.dataset.user + "@" + form.dataset.domain;
-    window.location.href = "mailto:" + to +
+    var url = "mailto:" + to +
       "?subject=" + encodeURIComponent(subject) +
       "&body=" + encodeURIComponent(body);
+    // New tab, so webmail (e.g. Outlook on the web) doesn't replace this page.
+    var w = window.open(url, "_blank");
+    if (!w) window.location.href = url; // blocked: fall back to this tab
 
     status.textContent = "Your email app should have opened with the request written out. Send it from there. If nothing opened, email the same information to " + to + ".";
   });
