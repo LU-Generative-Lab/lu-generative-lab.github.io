@@ -110,3 +110,43 @@ nav a:hover { text-decoration: underline; text-decoration-color: var(--spot); }
 
 footer { color: var(--muted); margin-top: 4rem; }
 footer p { margin: 0.3rem 0; }
+
+/* ---------- forms (resources/pi-library) ---------- */
+
+.pi-form { margin-top: 1.5rem; }
+.pi-form .field { margin: 0 0 1.5rem; }
+.pi-form fieldset { border: 0; padding: 0; }
+.pi-form legend, .pi-form .field > label { display: block; font-weight: 700; margin-bottom: 0.4rem; padding: 0; }
+.pi-form fieldset label { display: flex; gap: 0.6rem; align-items: baseline; margin: 0.3rem 0; }
+.pi-form .hint { font-weight: 400; color: var(--muted); }
+
+.pi-form input[type="text"], .pi-form textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.45rem 0.6rem;
+}
+.pi-form input[type="text"]:focus, .pi-form textarea:focus,
+.pi-form input[type="checkbox"]:focus-visible, .pi-form button:focus-visible {
+  outline: 2px solid var(--spot);
+  outline-offset: 1px;
+}
+.pi-form fieldset input[type="text"] { margin-top: 0.4rem; }
+.pi-form input[type="checkbox"] { accent-color: var(--spot); flex: none; }
+
+.pi-form button {
+  font-size: 1rem;
+  color: var(--paper);
+  background: var(--spot);
+  border: 0;
+  border-radius: 2px;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+}
+.pi-form button:hover { background: var(--ink); }
+
+.form-status { color: var(--muted); min-height: 1.5em; }
+.pot { position: absolute; left: -9999px; }

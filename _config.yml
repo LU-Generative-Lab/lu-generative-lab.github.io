@@ -20,3 +20,12 @@ kramdown:
   input: GFM
 
 exclude: [README.md, Gemfile, Gemfile.lock, vendor]
+
+# Raspberry Pi Lending Library form (resources/pi-library/).
+# endpoint: a form service URL (e.g. Formspree) that emails submissions.
+# Leave it empty and the form opens the student's email app instead,
+# addressed to mail_user@mail_domain.
+pi_library:
+  endpoint: ""
+  mail_user: acacia.ackles
+  mail_domain: lawrence.edu

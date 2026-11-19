@@ -18,6 +18,9 @@ It's plain [Jekyll](https://jekyllrb.com/), built by GitHub Pages' built-in buil
 | `very-small-space/index.html` | version two: the page | rarely |
 | `assets/js/small.js` | version two: the simulation | only to change how it behaves |
 | `assets/css/small.css` | version two: its extra styles | rarely |
+| `resources/index.md` | the resources list | yes: add a line to add a resource |
+| `resources/pi-library/index.md` | the Raspberry Pi Lending Library page and form | yes |
+| `assets/js/pi-library.js` | the lending form's behavior | rarely |
 | `404.md` | the not-found page | no |
 
 ## Add a person
@@ -67,7 +70,7 @@ If `gem install` fails while compiling native extensions (missing Ruby headers),
 
 ```sh
 docker run --rm -p 4000:4000 -v "$PWD":/srv ruby:3.3 sh -c \
-  "gem install jekyll -v '~> 3.10' kramdown-parser-gfm webrick && jekyll serve -s /srv -d /tmp/site -H 0.0.0.0"
+  "gem install 'jekyll:~>3.10' kramdown-parser-gfm webrick && jekyll serve -s /srv -d /tmp/site -H 0.0.0.0"
 ```
 
 ## Versions
@@ -77,3 +80,10 @@ docker run --rm -p 4000:4000 -v "$PWD":/srv ruby:3.3 sh -c \
 **Version two** (`/very-small-space/`) is a box of hard disks moved by the Metropolis algorithm. People are filled disks, projects are ringed ones, and the blank disks are room for people who haven't joined. Squeezing the room makes the disks crystallize. It reads the same `_people/` and `_projects/` files as version one, so adding a person or project updates both, and `_includes/join.md` is shared too. If a new entry has no `short`, its disk shows the first two characters of its name.
 
 The simulation's knobs (number of blank disks, how loose and tight the room gets) are constants at the top of `assets/js/small.js`.
+
+## The Raspberry Pi lending form
+
+GitHub Pages can't receive form submissions, so the form at `/resources/pi-library/` works one of two ways, set by `pi_library` in `_config.yml`:
+
+- **`endpoint` empty (the default):** submitting opens the student's own email app with the request written out and addressed to `mail_user@mail_domain`. Nothing goes through a third party, but the request isn't sent until the student hits send.
+- **`endpoint` set** to a form-service URL (for example a Formspree form URL): the form POSTs there and the service emails the submission.
