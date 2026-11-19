@@ -39,6 +39,7 @@ Copy an existing file in `_projects/` and change it.
 name: The Name of the Thing
 link: https://example.com/      # optional: where the name links
 people: Who works on it
+ai: Which AI tools work on it   # optional, e.g. Claude
 status: active                  # anything short: active, paused, not started, open to visitors
 order: 3
 ---

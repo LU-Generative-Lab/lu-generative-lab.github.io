@@ -19,7 +19,7 @@ Think of it as a makerspace for computational science, and please come make some
 {% for p in projects %}
   <li class="entry">
     <span class="entry-name">{% if p.link %}<a href="{{ p.link }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</span>
-    <span class="entry-meta mono">{{ p.people }} · {{ p.status }}</span>
+    <span class="entry-meta mono">people: {{ p.people }}{% if p.ai %} · AI: {{ p.ai }}{% endif %} · {{ p.status }}</span>
     {{ p.content | markdownify }}
   </li>
 {% endfor %}

@@ -1,7 +1,8 @@
 ---
 name: The Wending House
 link: https://wkusner.github.io/palace/
-people: Wöden Kusner, with Claude
+people: Wöden Kusner
+ai: Claude
 status: open to visitors
 order: 1
 ---

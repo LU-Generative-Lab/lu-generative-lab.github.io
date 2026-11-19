@@ -1,6 +1,7 @@
 ---
 name: This website, version two
-people: Acacia Ackles, Wöden Kusner, and an AI with a long leash
+people: Acacia Ackles, Wöden Kusner
+ai: TBD, on a long leash
 status: not started
 order: 2
 ---
