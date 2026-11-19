@@ -115,12 +115,28 @@ footer p { margin: 0.3rem 0; }
 
 .pi-form { margin-top: 1.5rem; }
 .pi-form .field { margin: 0 0 1.5rem; }
-.pi-form fieldset { border: 0; padding: 0; }
-.pi-form legend, .pi-form .field > label { display: block; font-weight: 700; margin-bottom: 0.4rem; padding: 0; }
-.pi-form fieldset label { display: flex; gap: 0.6rem; align-items: baseline; margin: 0.3rem 0; }
+
+/* one question per block: label on its own line, box full width under it */
+.pi-form p.field > label,
+.pi-form legend { display: block; font-weight: 700; margin-bottom: 0.4rem; }
 .pi-form .hint { font-weight: 400; color: var(--muted); }
 
-.pi-form input[type="text"], .pi-form textarea {
+.pi-form fieldset {
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.6rem 1rem 0.8rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+.pi-form legend { padding: 0 0.35rem; margin-bottom: 0; }
+
+/* one checkbox per line, long labels wrap under their text, not the box */
+.pi-form fieldset label { display: flex; gap: 0.6rem; align-items: baseline; margin: 0.35rem 0; }
+.pi-form input[type="checkbox"] { accent-color: var(--spot); flex: none; }
+
+.pi-form input[type="text"],
+.pi-form textarea {
+  display: block;
   width: 100%;
   font: inherit;
   color: var(--ink);
@@ -129,13 +145,13 @@ footer p { margin: 0.3rem 0; }
   border-radius: 2px;
   padding: 0.45rem 0.6rem;
 }
-.pi-form input[type="text"]:focus, .pi-form textarea:focus,
-.pi-form input[type="checkbox"]:focus-visible, .pi-form button:focus-visible {
-  outline: 2px solid var(--spot);
-  outline-offset: 1px;
-}
+.pi-form textarea { resize: vertical; }
 .pi-form fieldset input[type="text"] { margin-top: 0.4rem; }
-.pi-form input[type="checkbox"] { accent-color: var(--spot); flex: none; }
+.pi-form input[type="text"][hidden] { display: none; }
+
+.pi-form input:focus-visible,
+.pi-form textarea:focus-visible,
+.pi-form button:focus-visible { outline: 2px solid var(--spot); outline-offset: 1px; }
 
 .pi-form button {
   font-size: 1rem;
@@ -149,4 +165,6 @@ footer p { margin: 0.3rem 0; }
 .pi-form button:hover { background: var(--ink); }
 
 .form-status { color: var(--muted); min-height: 1.5em; }
-.pot { position: absolute; left: -9999px; }
+
+/* spam trap: invisible to people, filled in by bots */
+.pot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

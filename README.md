@@ -18,7 +18,7 @@ It's plain [Jekyll](https://jekyllrb.com/), built by GitHub Pages' built-in buil
 | `very-small-space/index.html` | version two: the page | rarely |
 | `assets/js/small.js` | version two: the simulation | only to change how it behaves |
 | `assets/css/small.css` | version two: its extra styles | rarely |
-| `resources/index.md` | the resources list | yes: add a line to add a resource |
+| `_resources/*.md` | one file per resource (things we lend or share) | **yes**: add a file to add a resource |
 | `resources/pi-library/index.md` | the Raspberry Pi Lending Library page and form | yes |
 | `assets/js/pi-library.js` | the lending form's behavior | rarely |
 | `404.md` | the not-found page | no |
@@ -53,6 +53,20 @@ short: TN                       # two characters for its disk in version two
 order: 3
 ---
 One to three sentences. If the project has a driving question, lead with it in **bold**.
+```
+
+## Add a resource
+
+Copy `_resources/pi-library.md` and change it.
+
+```yaml
+---
+name: The Name of the Thing
+link: /resources/the-thing/     # optional: its own page, or any URL
+kind: hardware · borrow for a term   # optional: the gray line under the name
+order: 2
+---
+One sentence on what it is.
 ```
 
 ## Preview locally (optional)

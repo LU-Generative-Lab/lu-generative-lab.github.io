@@ -8,11 +8,13 @@ url: https://lu-generative-lab.github.io
 baseurl: ""
 repo: https://github.com/LU-Generative-Lab/lu-generative-lab.github.io
 
-# Content lives in these two folders. One Markdown file per person or project.
+# Content lives in these folders. One Markdown file per person, project, or resource.
 collections:
   people:
     output: false
   projects:
+    output: false
+  resources:
     output: false
 
 markdown: kramdown

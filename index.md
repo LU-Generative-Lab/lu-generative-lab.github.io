@@ -25,6 +25,19 @@ Think of it as a makerspace for computational science, and please come make some
 {% endfor %}
 </ul>
 
+## resources
+
+<ul class="entries">
+{% assign resources = site.resources | sort: "order" %}
+{% for r in resources %}
+  <li class="entry">
+    <span class="entry-name">{% if r.link %}<a href="{{ r.link | relative_url }}">{{ r.name }}</a>{% else %}{{ r.name }}{% endif %}</span>
+    {% if r.kind %}<span class="entry-meta mono">{{ r.kind }}</span>{% endif %}
+    {{ r.content | markdownify }}
+  </li>
+{% endfor %}
+</ul>
+
 ## people
 
 <ul class="entries">
