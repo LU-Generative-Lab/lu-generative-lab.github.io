@@ -1,0 +1,112 @@
+/* Generative Lab, version one.
+   Change the tokens in :root, not the rules below them. */
+
+:root {
+  --paper: #f7f4ec;
+  --ink: #1b1916;
+  --muted: #5b5a52;
+  --rule: #d9d3c2;
+  --spot: #b83d24;       /* red-orange: the one accent color */
+  --highlight: #fffc76;  /* yellow: link targets and text selection */
+  --highlight-ink: #1b1916;
+
+  --font-body: "Atkinson Hyperlegible", Verdana, Tahoma, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --width: 660px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #141210;
+    --ink: #ece8de;
+    --muted: #afa99c;
+    --rule: #3a362f;
+    --spot: #e07f62;
+    --highlight: #5a5200;
+    --highlight-ink: #ece8de;
+  }
+}
+
+/* ---------- base ---------- */
+
+* { box-sizing: border-box; }
+
+html { background: var(--paper); scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+
+.w {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.mono { font-family: var(--font-mono); font-size: 0.85em; }
+
+a {
+  color: inherit;
+  text-decoration-color: var(--spot);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--spot); }
+
+::selection { background: var(--highlight); color: var(--highlight-ink); }
+:target { background: var(--highlight); color: var(--highlight-ink); }
+
+img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; }
+
+/* ---------- headings: sections read as paths ---------- */
+
+h1, h2, h3 {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+h2 { font-size: 1.3rem; margin-top: 3rem; }
+h2::before { content: "./"; color: var(--spot); }
+h3 { font-size: 1.05rem; margin-top: 2rem; }
+
+hr { border: 0; text-align: center; color: var(--muted); margin: 2.5rem 0; }
+hr::before { content: "/////"; font-family: var(--font-mono); }
+
+/* ---------- header ---------- */
+
+.site-header { border-bottom: 1px dashed var(--spot); padding-bottom: 1rem; margin-bottom: 2rem; }
+
+.site-title {
+  font-family: var(--font-mono);
+  font-size: 1.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.site-title::before { content: "./ "; color: var(--spot); }
+
+.tagline { margin: 0.25rem 0 0.75rem; color: var(--muted); }
+
+nav a { text-decoration: none; }
+nav a:hover { text-decoration: underline; text-decoration-color: var(--spot); }
+
+/* ---------- entries (projects and people) ---------- */
+
+.entries { list-style: none; padding: 0; }
+
+.entry { margin: 0 0 1.75rem; }
+.entry-name { font-weight: 700; }
+.entry-meta { color: var(--muted); display: block; margin-top: 0.15rem; }
+.entry p { margin: 0.35rem 0 0; }
+
+/* ---------- footer ---------- */
+
+footer { color: var(--muted); margin-top: 4rem; }
+footer p { margin: 0.3rem 0; }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }} at Lawrence University</title>
+  <meta name="description" content="{{ page.description | default: site.description | strip }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+<!--
+  safety pig, on loan from wkusner.github.io
+                         _
+ _._ _..._ .-',     _.._(`))
+'-. `     '  /-._.-'    ',/
+   )         \            '.
+  / _    _    |             \
+ |  a    a    /              |
+ \   .-.                     ;
+  '-('' ).-'       ,'       ;
+     '-;           |      .'
+        \           \    /
+        | 7  .__  _.-\   \
+        | |  |  ``/  /`  /
+       /,_|  |   /,_/   /
+          /,_/      '`-'
+-->
+<div class="w">
+  <header class="site-header">
+    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <p class="tagline">{{ site.tagline }}</p>
+    <nav class="mono">
+      <a href="{{ '/' | relative_url }}#what">what</a> ·
+      <a href="{{ '/' | relative_url }}#projects">projects</a> ·
+      <a href="{{ '/' | relative_url }}#people">people</a> ·
+      <a href="{{ '/' | relative_url }}#join">join</a>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="mono">
+    <hr>
+    <p>{{ site.title }} · {{ site.tagline }}</p>
+    <p>This is version one: plain text. <a href="{{ site.repo }}">Source on GitHub.</a></p>
+  </footer>
+</div>
+</body>
+</html>
