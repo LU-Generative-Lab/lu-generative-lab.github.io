@@ -14,16 +14,27 @@ Acacia has a small stack of Raspberry Pis, and they're more useful in your hands
 - a **Raspberry Pi 4 Model B** with 4GB of RAM
 - a power cable
 
-That's it. **Everything else is up to you to provide, including the microSD card**, which the Pi needs before it will do anything at all. (Tip: you can often pilfer these out of an old Nintendo Switch, but it will wipe the card entirely. Otherwise, you can get one for about $20 with [Raspberry Pi OS already instaled](https://www.pishop.us/product/class-10-microsd-card-with-raspberry-pi-os-bookworm-32gb/). **Recommended specs:** A1, 32GB.) 
+That's it. **Everything else is up to you to provide, including the microSD card**, which the Pi needs before it will do anything at all.
 
-Depending on your project, you may also want a case, a micro-HDMI cable (the Pi 4 has micro-HDMI ports, not full-size), a keyboard and mouse, sensors, wires, ethernet cables, and so on.
+> _Tip: you can often pilfer these out of an old Nintendo Switch, but it will wipe the card entirely. Otherwise, you can get one for about $20 with [Raspberry Pi OS already installed](https://www.pishop.us/product/class-10-microsd-card-with-raspberry-pi-os-bookworm-32gb/)_
+>
+> **Recommended specs:** A1, 32GB.
+
+Depending on your project, you may also want:
+- a case
+- a micro-HDMI cable (the Pi 4 has micro-HDMI ports, not full-size)
+- a keyboard and mouse (or [your laptop over ssh](https://www.raspberrypi.com/documentation/computers/remote-access.html)) 
+- sensors
+- wires
+- a soldering kit
+- and so on....
 
 **If money is a barrier between you and the project you want to do,** email Acacia and say so. She is more than happy to work closely with you on it. If you want free rein to do whatever you like, though, the parts are yours to supply.
 
 ### what we ask
 
-1. Bring it back undamaged. (We know accidents happen; just be careful.)
-2. Write a short report (100 words or more) on what you ended up doing with it. "I didn't do anything with it because I got too busy" is a perfectly good answer. We'd just like to know.
+- Bring it back undamaged. 
+- Write a short report (100 words or more) on what you ended up doing with it. "I didn't do anything with it because I got too busy" is fine. Due within 2 weeks of return.
 
 ### check one out
 
