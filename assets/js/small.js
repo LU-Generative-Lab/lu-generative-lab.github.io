@@ -22,6 +22,8 @@
   var PHI_LOOSE = 0.30;   // coverage with the slider all the way left
   var PHI_TIGHT = 0.89;   // coverage the slider asks for all the way right
   var PAD = 2;            // px between canvas edge and the loosest walls
+  var SWEEPS = 2;         // Metropolis sweeps per frame: higher is faster and jitterier
+  var MAX_STEP = 0.08;    // largest nudge, as a fraction of a disk's radius
   var TAU = Math.PI * 2;
 
   // ---------- the disks ----------
@@ -38,7 +40,7 @@
   function squeeze() { return 1 + (sMax - 1) * (slider.value / 1000); }
 
   var r = r0;                  // disk radius, in room units; starts loose, grows toward the slider
-  var delta = r * 0.5;         // Metropolis step size, adapted as we go
+  var delta = r * MAX_STEP;    // Metropolis step size, adapted as we go
   var psiGlobal = 0, psiLocal = 0;
 
   function free(x, y, skip) {
@@ -395,11 +397,10 @@
     frame++;
     for (var k = 0; k < 4; k++) dragStep();
     if (running) {
-      // as many sweeps as fit in a few milliseconds, so fast machines squeeze faster
-      var acc = 0, S = 0, t0 = performance.now();
-      do { acc += sweep(); grow(); S++; } while (S < 40 && performance.now() - t0 < 5);
-      acc /= S;
-      delta = Math.min(r, Math.max(r * 1e-4, delta * (acc > 0.4 ? 1.08 : 0.92)));
+      var acc = 0;
+      for (var S = 0; S < SWEEPS; S++) { acc += sweep(); grow(); }
+      acc /= SWEEPS;
+      delta = Math.min(r * MAX_STEP, Math.max(r * 1e-4, delta * (acc > 0.4 ? 1.08 : 0.92)));
     } else {
       grow();
     }
