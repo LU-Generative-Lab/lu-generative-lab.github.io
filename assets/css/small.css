@@ -1,0 +1,64 @@
+/* Version two: a very small space. Colors come from the tokens in style.css. */
+
+.lede { margin-top: 0; }
+
+.key {
+  display: inline-block;
+  min-width: 1.9em;
+  padding: 0 0.3em;
+  border-radius: 1em;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  line-height: 1.6;
+}
+.key-person { background: var(--spot); color: var(--paper); }
+.key-project { border: 2px solid var(--spot); color: var(--spot); line-height: calc(1.6em - 4px); }
+
+.space { margin: 1.5rem 0 0.5rem; }
+
+#box {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  touch-action: none;
+  cursor: grab;
+}
+#box.dragging { cursor: grabbing; }
+
+.caption { color: var(--muted); min-height: 1.5em; margin: 0.4rem 0 0; text-align: center; }
+
+.controls { margin: 1rem 0; }
+
+.squeeze { display: flex; align-items: center; gap: 0.75rem; }
+.squeeze input { flex: 1; accent-color: var(--spot); }
+
+.buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+
+button {
+  font: inherit;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+}
+button:hover, button:focus-visible { background: var(--ink); color: var(--paper); outline: none; }
+button:hover .key-person, button:focus-visible .key-person { background: var(--paper); color: var(--ink); }
+button:hover .key-project, button:focus-visible .key-project { border-color: var(--paper); color: var(--paper); }
+
+.readout { color: var(--muted); margin: 0.75rem 0 0; }
+
+.legend ul { list-style: none; padding: 0; margin: 1.5rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.legend button { border-color: var(--rule); }
+
+.panel {
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 0.25rem 1.25rem 1rem;
+  margin: 1.5rem 0;
+}
+.panel:focus { outline: none; }
+.panel h3 { margin-top: 1rem; }
+.panel .entry-meta { color: var(--muted); display: block; margin-bottom: 0.5rem; }
+.panel .close { float: right; margin-top: 0.75rem; border-color: var(--rule); }

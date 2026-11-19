@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {%- if page.css %}
+  <link rel="stylesheet" href="{{ page.css | relative_url }}">
+  {%- endif %}
 </head>
 <body>
 <!--
@@ -46,8 +49,15 @@
   <footer class="mono">
     <hr>
     <p>{{ site.title }} · {{ site.tagline }}</p>
-    <p>This is version one: plain text. <a href="{{ site.repo }}">Source on GitHub.</a></p>
+    {%- if page.version == 2 %}
+    <p>This is version two. <a href="{{ '/' | relative_url }}">The plain version</a> has everything here as text. <a href="{{ site.repo }}">Source on GitHub.</a></p>
+    {%- else %}
+    <p>This is version one: plain text. Version two is <a href="{{ '/very-small-space/' | relative_url }}">a very small space</a>. <a href="{{ site.repo }}">Source on GitHub.</a></p>
+    {%- endif %}
   </footer>
 </div>
+{%- if page.js %}
+<script src="{{ page.js | relative_url }}" defer></script>
+{%- endif %}
 </body>
 </html>

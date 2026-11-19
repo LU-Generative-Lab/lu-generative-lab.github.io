@@ -1,0 +1,96 @@
+---
+layout: default
+title: A very small space
+version: 2
+css: /assets/css/small.css
+js: /assets/js/small.js
+description: >-
+  Version two of the Generative Lab website: a bunch of very bright people in a
+  very small space, simulated as hard disks.
+---
+{%- assign people = site.people | sort: "order" -%}
+{%- assign projects = site.projects | sort: "order" -%}
+
+<p class="lede">A bunch of very bright people in a very small space. The <span class="key key-person">filled</span> disks are people, the <span class="key key-project">ringed</span> ones are projects, and the blank ones are room for people who haven't joined yet. Drag anything. Squeeze the room.</p>
+
+<noscript>
+  <p><strong>This version needs JavaScript.</strong> Everything on it is also on <a href="{{ '/' | relative_url }}">the plain version</a>.</p>
+</noscript>
+
+<div class="space" id="space">
+  <canvas id="box" aria-hidden="true"></canvas>
+  <p class="caption mono" id="caption" aria-live="polite"></p>
+</div>
+
+<div class="controls mono">
+  <label class="squeeze">
+    <span>squeeze</span>
+    <input type="range" id="squeeze" min="0" max="1000" value="180" aria-describedby="readout">
+  </label>
+  <div class="buttons">
+    <button type="button" id="join">join</button>
+    <button type="button" id="pause">pause</button>
+    <button type="button" id="about-btn">what is this?</button>
+  </div>
+  <p class="readout" id="readout"></p>
+</div>
+
+<nav class="legend mono" aria-label="Everyone and everything in the space">
+  <ul>
+    {%- for x in people %}
+    <li><button type="button" data-key="person-{{ forloop.index0 }}"><span class="key key-person">{{ x.short }}</span> {{ x.name }}</button></li>
+    {%- endfor %}
+    {%- for x in projects %}
+    <li><button type="button" data-key="project-{{ forloop.index0 }}"><span class="key key-project">{{ x.short }}</span> {{ x.name }}</button></li>
+    {%- endfor %}
+  </ul>
+</nav>
+
+<section class="panel" id="panel" tabindex="-1" aria-live="polite" hidden></section>
+
+<template id="tpl-about">
+  <h3>What is this?</h3>
+  <p>Every disk here is hard: no two can overlap. They move by the <strong>Metropolis algorithm</strong>. Pick a disk, nudge it a random small amount, and keep the move only if it doesn't hit anything. Repeat a few thousand times a second.</p>
+  <p>That's the original use of the algorithm. In 1953, Metropolis, the Rosenbluths, and the Tellers introduced it to compute the equation of state of hard disks, on the MANIAC computer at Los Alamos. Arianna Rosenbluth wrote the code.</p>
+  <p>Squeeze the room and the disks run out of space to wander. Around 70% coverage, the fluid starts to order into a hexagonal crystal. How exactly hard disks melt was argued about for decades. Bernard and Krauth settled it in 2011: a first-order jump from liquid to a "hexatic" phase, then a smooth change to solid. In a box this small, with walls, the numbers are approximate.</p>
+  <p>The tick inside each blank disk points along its neighbours' local hexagonal order, and it darkens as that order gets stronger. Watch the ticks line up into grains as you squeeze.</p>
+  <p>φ is the fraction of the room covered by disks. The most you can ever cover is π/(2√3) ≈ 0.9069, the honeycomb packing. ψ₆ measures how much the whole room agrees on one hexagonal orientation, from 0 to 1. Separate crystal grains pointing different ways pull it down even when each grain is neat.</p>
+</template>
+
+<template id="tpl-anon">
+  <h3>Nobody yet.</h3>
+  <p>Every blank disk is room for someone who hasn't joined. It could be you.</p>
+  <p><button type="button" class="inline-join">join</button></p>
+</template>
+
+<template id="tpl-you">
+  <h3>You're in.</h3>
+  <div class="panel-body">{% capture join %}{% include join.md %}{% endcapture %}{{ join | markdownify }}</div>
+</template>
+
+<script type="application/json" id="lab-data">
+{
+  "people": [
+    {%- for x in people %}
+    {
+      "name": {{ x.name | jsonify }},
+      "short": {{ x.short | default: x.name | slice: 0, 2 | jsonify }},
+      "link": {{ x.site | jsonify }},
+      "meta": {{ x.role | jsonify }},
+      "html": {{ x.content | markdownify | strip | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ],
+  "projects": [
+    {%- for x in projects %}
+    {
+      "name": {{ x.name | jsonify }},
+      "short": {{ x.short | default: x.name | slice: 0, 2 | jsonify }},
+      "link": {% if x.link %}{{ x.link | relative_url | jsonify }}{% else %}null{% endif %},
+      "meta": {% capture m %}people: {{ x.people }}{% if x.ai %} · AI: {{ x.ai }}{% endif %} · {{ x.status }}{% endcapture %}{{ m | strip | jsonify }},
+      "html": {{ x.content | markdownify | strip | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
+}
+</script>

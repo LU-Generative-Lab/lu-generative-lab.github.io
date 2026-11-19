@@ -4,6 +4,7 @@ link: https://wkusner.github.io/palace/
 people: Wöden Kusner
 ai: Claude
 status: open to visitors
+short: WH
 order: 1
 ---
 A Myst-like library and memory palace full of working mathematical instruments, drafts, books, and puzzles. Doors keep hours, mirrors hide rooms, and the sky and weather are real.

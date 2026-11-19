@@ -1,8 +1,10 @@
 ---
-name: This website, version two
-people: Acacia Ackles, Wöden Kusner
-ai: TBD, on a long leash
-status: not started
+name: This Website But Weirder
+link: /very-small-space/
+people: Acacia Ackles
+ai: Claude 
+status: tbd
+short: v2
 order: 2
 ---
-**What should a lab's front door look like if it's allowed to be strange?** Version one is the plain text you're reading. Version two will be explorable, built from the same list of people and projects.
+this field intentionally left blank
