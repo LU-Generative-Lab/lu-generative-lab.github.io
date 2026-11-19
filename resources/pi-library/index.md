@@ -40,6 +40,8 @@ Depending on your project, you may also want:
 
 Fill out this form and hit **check out a pi**. Your email app will open the information below pre-filled. Make sure you actually send it; nothing gets saved or sent until you hit _Send_ in your email client.
 
+_For Lawrence email, if your browser gives you a drop-down choice, use `outlook.cloud.microsoft`, not `outlook.office365.microsoft.`_
+
 <form class="pi-form" id="pi-form" method="POST" action="{{ site.pi_library.endpoint }}" data-user="{{ site.pi_library.mail_user }}" data-domain="{{ site.pi_library.mail_domain }}">
 
   <p class="field">
