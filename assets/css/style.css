@@ -6,8 +6,8 @@
   --ink: #1b1916;
   --muted: #5b5a52;
   --rule: #d9d3c2;
-  --spot: #b83d24;       /* red-orange: the one accent color */
-  --highlight: #fffc76;  /* yellow: link targets and text selection */
+  --spot: #17653a;       /* dark green: the one accent color */
+  --highlight: #c9f0c4;  /* pale green: link targets and text selection */
   --highlight-ink: #1b1916;
 
   --font-body: "Atkinson Hyperlegible", Verdana, Tahoma, sans-serif;
@@ -21,8 +21,8 @@
     --ink: #ece8de;
     --muted: #afa99c;
     --rule: #3a362f;
-    --spot: #e07f62;
-    --highlight: #5a5200;
+    --spot: #44d07b;       /* phosphor green */
+    --highlight: #1d4a2a;
     --highlight-ink: #ece8de;
   }
 }
