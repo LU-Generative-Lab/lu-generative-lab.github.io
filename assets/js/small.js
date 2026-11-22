@@ -18,6 +18,7 @@
   var panel = $('panel');
   var pauseBtn = $('pause');
 
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var N_BLANK = 150;
   var PHI_LOOSE = 0.30;   // coverage with the slider all the way left
   var PHI_TIGHT = 0.89;   // coverage the slider asks for all the way right
@@ -241,15 +242,19 @@
     readout.textContent = 'φ = ' + p.toFixed(3) + ' · ψ₆ = ' + psiGlobal.toFixed(2) + ' · ' + stateName(p);
     if (jammed && !saidFull) { saidFull = true; say('Full. We may need a bigger room.', 6000); }
     if (p < 0.72) saidFull = false;
-    var now = performance.now();
-    if (now < messageUntil) caption.textContent = message;
-    else if (hover) caption.textContent = hover.kind === 'blank' ? 'nobody yet' : hover.kind === 'you' ? 'you' : hover.entry.name;
-    else caption.textContent = 'drag a disk · click one to read it';
+    var now = performance.now(), text;
+    if (now < messageUntil) text = message;
+    else if (hover) text = hover.kind === 'blank' ? 'nobody yet' : hover.kind === 'you' ? 'you' : hover.entry.name;
+    else text = 'drag a disk · click one to read it';
+    // The caption is a live region: rewrite it only when it changes, so a
+    // screen reader is not told the same thing six times a second.
+    if (caption.textContent !== text) caption.textContent = text;
+    slider.setAttribute('aria-valuetext', 'coverage ' + p.toFixed(2) + ', ' + stateName(p));
   }
 
   // ---------- the panel ----------
 
-  var selected = null, hover = null;
+  var selected = null, hover = null, opener = null;
 
   function el(tag, attrs, text) {
     var e = document.createElement(tag);
@@ -261,12 +266,15 @@
   function showPanel(fill, focus) {
     panel.innerHTML = '';
     var close = el('button', { type: 'button', 'class': 'close mono' }, 'close');
-    close.addEventListener('click', function () { panel.hidden = true; selected = null; });
+    close.addEventListener('click', function () {
+      panel.hidden = true; selected = null;
+      if (opener && document.body.contains(opener)) opener.focus();  // back where the reader was
+    });
     panel.appendChild(close);
     fill(panel);
     panel.hidden = false;
     if (focus) panel.focus();
-    else panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    else panel.scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
   }
 
   function fromTemplate(id) {
@@ -275,6 +283,7 @@
 
   function open(d, focus) {
     selected = d;
+    opener = document.activeElement;
     if (d.kind === 'blank') {
       showPanel(function (p) {
         fromTemplate('tpl-anon')(p);
@@ -370,9 +379,9 @@
   }
 
   $('join').addEventListener('click', join);
-  $('about-btn').addEventListener('click', function () { selected = null; showPanel(fromTemplate('tpl-about'), true); });
+  $('about-btn').addEventListener('click', function () { selected = null; opener = this; showPanel(fromTemplate('tpl-about'), true); });
 
-  var running = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var running = !reduceMotion;
   function setRunning(on) { running = on; pauseBtn.textContent = on ? 'pause' : 'play'; }
   pauseBtn.addEventListener('click', function () { setRunning(!running); });
   setRunning(running);

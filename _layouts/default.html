@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="{{ page.css | relative_url }}">
   {%- endif %}
 </head>
-<body>
+<body{% unless page.url == '/' %} class="inner"{% endunless %}>
+<a class="skip-link mono" href="#content">skip to content</a>
 <!--
   safety pig, on loan from wkusner.github.io
                          _
@@ -33,9 +34,13 @@
 -->
 <div class="w">
   <header class="site-header">
+    {%- if page.url == '/' %}
+    <h1><a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+    {%- else %}
     <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    {%- endif %}
     <p class="tagline">{{ site.tagline }}</p>
-    <nav class="mono">
+    <nav class="mono" aria-label="Sections">
       <a href="{{ '/' | relative_url }}#projects">projects</a> ·
       <a href="{{ '/' | relative_url }}#resources">resources</a> ·
       <a href="{{ '/' | relative_url }}#people">people</a> ·
@@ -43,7 +48,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="content" tabindex="-1">
     {{ content }}
   </main>
 

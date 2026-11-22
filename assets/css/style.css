@@ -6,6 +6,7 @@
   --ink: #1b1916;
   --muted: #5b5a52;
   --rule: #d9d3c2;
+  --field: #857e6e;      /* borders of inputs: 3.7:1 on paper, for WCAG 1.4.11 */
   --spot: #17653a;       /* dark green: the one accent color */
   --highlight: #c9f0c4;  /* pale green: link targets and text selection */
   --highlight-ink: #1b1916;
@@ -21,24 +22,33 @@
     --ink: #ece8de;
     --muted: #afa99c;
     --rule: #3a362f;
+    --field: #77705f;
     --spot: #44d07b;       /* phosphor green */
     --highlight: #1d4a2a;
     --highlight-ink: #ece8de;
   }
 }
 
+/* More contrast when the reader's system asks for it. */
+@media (prefers-contrast: more) {
+  :root { --muted: var(--ink); --rule: var(--field); }
+}
+
 /* ---------- base ---------- */
 
 * { box-sizing: border-box; }
 
-html { background: var(--paper); scroll-behavior: smooth; }
+html { background: var(--paper); }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: 1.0625rem; /* 17px at the browser default; follows the reader's text-size setting */
   line-height: 1.55;
   overflow-wrap: break-word;
 }
@@ -58,6 +68,17 @@ a {
   text-underline-offset: 3px;
 }
 a:hover { color: var(--spot); }
+a:focus-visible { outline: 2px solid var(--spot); outline-offset: 2px; }
+
+/* hidden on screen, read by screen readers */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* the first thing a keyboard reaches: jump past the header */
+.skip-link { position: absolute; left: 1rem; top: -3rem; padding: 0.4rem 0.8rem; background: var(--ink); color: var(--paper); }
+.skip-link:focus { top: 1rem; }
 
 ::selection { background: var(--highlight); color: var(--highlight-ink); }
 :target { background: var(--highlight); color: var(--highlight-ink); }
@@ -72,12 +93,23 @@ h1, h2, h3 {
   line-height: 1.25;
   letter-spacing: -0.01em;
 }
-h2 { font-size: 1.3rem; margin-top: 3rem; }
-h2::before { content: "./"; color: var(--spot); }
+/* The decorative marks below are given empty alt text (the "/ \"\"" part),
+   so screen readers do not read out "dot slash". */
+h1, h2 { font-size: 1.3rem; margin-top: 3rem; }
+h1::before, h2::before { content: "./"; content: "./" / ""; color: var(--spot); }
 h3 { font-size: 1.05rem; margin-top: 2rem; }
 
+/* Inner pages: the page title is the h1, so their sections are h2 and look
+   as h3 did before. */
+.inner main h2 { font-size: 1.05rem; margin-top: 2rem; }
+.inner main h2::before { content: none; }
+
+/* On the front page the site title is the h1. */
+.site-header h1 { margin: 0; font-size: inherit; }
+.site-header h1::before { content: none; }
+
 hr { border: 0; text-align: center; color: var(--muted); margin: 2.5rem 0; }
-hr::before { content: "/////"; font-family: var(--font-mono); }
+hr::before { content: "/////"; content: "/////" / ""; font-family: var(--font-mono); }
 
 /* ---------- header ---------- */
 
@@ -90,7 +122,7 @@ hr::before { content: "/////"; font-family: var(--font-mono); }
   text-decoration: none;
   letter-spacing: -0.02em;
 }
-.site-title::before { content: "./ "; color: var(--spot); }
+.site-title::before { content: "./ "; content: "./ " / ""; color: var(--spot); }
 
 .tagline { margin: 0.25rem 0 0.75rem; color: var(--muted); }
 
@@ -122,7 +154,7 @@ footer p { margin: 0.3rem 0; }
 .pi-form .hint { font-weight: 400; color: var(--muted); }
 
 .pi-form fieldset {
-  border: 1px solid var(--rule);
+  border: 1px solid var(--field);
   border-radius: 2px;
   padding: 0.6rem 1rem 0.8rem;
   margin-left: 0;
@@ -141,7 +173,7 @@ footer p { margin: 0.3rem 0; }
   font: inherit;
   color: var(--ink);
   background: transparent;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--field);
   border-radius: 2px;
   padding: 0.45rem 0.6rem;
 }
@@ -168,3 +200,7 @@ footer p { margin: 0.3rem 0; }
 
 /* spam trap: invisible to people, filled in by bots */
 .pot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* the skip link lands on main: no outline, and no :target highlight on the whole page */
+main:focus { outline: none; }
+main:target { background: none; color: inherit; }

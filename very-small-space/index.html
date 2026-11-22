@@ -11,6 +11,8 @@ description: >-
 {%- assign people = site.people | sort: "order" -%}
 {%- assign projects = site.projects | sort: "order" -%}
 
+<h1 class="visually-hidden">A very small space</h1>
+
 <p class="lede">A bunch of very bright people in a very small space. The <span class="key key-person">filled</span> disks are people, the <span class="key key-project">ringed</span> ones are projects, and the blank ones are room for people who haven't joined yet. Drag anything. Squeeze the room.</p>
 
 <noscript>
@@ -46,7 +48,7 @@ description: >-
   </ul>
 </nav>
 
-<section class="panel" id="panel" tabindex="-1" aria-live="polite" hidden></section>
+<section class="panel" id="panel" tabindex="-1" aria-label="Details" hidden></section>
 
 <template id="tpl-about">
   <h3>What is this?</h3>

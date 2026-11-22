@@ -5,11 +5,11 @@ description: Borrow a Raspberry Pi 4 from the Generative Lab for a term.
 js: /assets/js/pi-library.js
 ---
 
-## raspberry pi lending library
+# raspberry pi lending library
 
 Acacia has a small stack of Raspberry Pis, and they're more useful in your hands than in her drawer. Borrow one for a term and make something with it.
 
-### what you get
+## what you get
 
 - a **Raspberry Pi 4 Model B** with 4GB of RAM
 - a power cable
@@ -31,12 +31,12 @@ Depending on your project, you may also want:
 
 **If money is a barrier between you and the project you want to do,** email Acacia and say so. She is more than happy to work closely with you on it. If you want free rein to do whatever you like, though, the parts are yours to supply.
 
-### what we ask
+## what we ask
 
 - Bring it back undamaged. 
 - Write a short report (100 words or more) on what you ended up doing with it. "I didn't do anything with it because I got too busy" is fine. Due within 2 weeks of return.
 
-### check one out
+## check one out
 
 Fill out this form and hit **check out a pi**. Your email app will open the information below pre-filled. Make sure you actually send it; nothing gets saved or sent until you hit _Send_ in your email client.
 
